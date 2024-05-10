@@ -11,16 +11,27 @@ const Page = ({pageInfo}) => {
   let back = ""
   let next = ""
   let cur = 1
+  const params = new URLSearchParams(pageInfo.location)
+  let defaultPath = `${path}`
+  if(params.has("page")){
+    params.delete("page")
+  }
+  if(params.size === 0){
+    defaultPath += "?"
+  }
+  else{
+    defaultPath += `?${params.toString()}&`
+  }
   if(pageNum === 1){
-    back = `${path}?page=1`
+    back = `${defaultPath}page=1`
   } else{
-    back = `${path}?page=${(pageNum-1)*PAGE_SIZE}`
+    back = `${defaultPath}page=${(pageNum-1)*PAGE_SIZE}`
   }
 
   if(pageNum === maxPageNum){
-    next = `${path}?page=${pageInfo.maxPage}`
+    next = `${defaultPath}page=${pageInfo.maxPage}`
   } else{
-    next = `${path}?page=${(pageNum)*PAGE_SIZE+1}`
+    next = `${defaultPath}page=${(pageNum)*PAGE_SIZE+1}`
   }
   
   let step;
@@ -33,9 +44,9 @@ const Page = ({pageInfo}) => {
       <Link id="back" className='page_el' to={back}>이전</Link>
       {pages.map((num) => {
         if(num === pageInfo.currentPage){
-          return <Link id="current" key={num} className='page_el' to={`${path}?page=${num}`}>{num}</Link>
+          return <Link id="current" key={num} className='page_el' to={`${defaultPath}?page=${num}`}>{num}</Link>
         }else{
-          return <Link key={num} className='page_el' to={`${path}?page=${num}`}>{num}</Link>
+          return <Link key={num} className='page_el' to={`${defaultPath}page=${num}`}>{num}</Link>
         }
       }
       )}

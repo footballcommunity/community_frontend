@@ -1,11 +1,11 @@
 import axios from "axios";
 
-async function getBoardList(params, category){
+async function getBoardList(path,params){
   
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
-    url: `http://52.78.129.190:8080/board${params}`,
+    url: `http://52.78.129.190:8080${path}${params}`,
     headers: { }
   };
   try {

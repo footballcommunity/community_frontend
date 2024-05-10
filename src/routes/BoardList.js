@@ -19,8 +19,10 @@ const BoardList = () => {
   const [page, setPage] = useState();
 
   const fetchBoardList = async () => {
+    console.log("path : "+path)
+    console.log("location : " + location)
     try {
-      const response = await getBoardList(location);
+      const response = await getBoardList(path,location);
       console.log(response)
       setBoard(response.pageList);
       setPage(response.page.page);
@@ -43,7 +45,7 @@ const BoardList = () => {
             <Article key={article.articleId} articleId={article.articleId} title={article.title} authorName={article.authorName} categoryName={article.categoryName} viewCount={article.viewCount} dateCreated={article.dateCreated} dateUpdated={article.dateUpdated}></Article>
           ))
         }
-    <Page pageInfo={{path, page, maxPage, startPage, endPage}}></Page>
+    <Page pageInfo={{path, location, page, maxPage, startPage, endPage}}></Page>
     </div>
   );
 };
