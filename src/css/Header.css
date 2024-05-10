@@ -1,0 +1,32 @@
+header {
+    display: grid;
+    background-color: #1f2029;
+    height: 100px;
+    border-bottom: 1px solid gray;
+}
+
+div .title {
+    margin: auto;
+    color: white;
+    font-size: x-large;
+}
+
+div .linkContainer {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+nav {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+
+.nav:visited{
+    color: white;
+}
+
+.nav{
+    color: white;
+    margin-right: 10px;
+    margin-top: 10px;
+}

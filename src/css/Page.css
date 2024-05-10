@@ -1,0 +1,37 @@
+#page_wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 5%;
+    margin-top: 3%;
+}
+
+.page_el{
+    display: flex;
+    box-sizing: border-box;
+    margin-right: 10px;
+    height: 30px;
+    width: 30px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    color: white;
+}
+
+#current{
+    background-color: slategray;
+}
+
+#input_form{
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+}
+
+#comment_input{
+    margin-right: 5%;
+    
+}
+
+#comment_btn{
+
+}

@@ -1,0 +1,35 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+}
+
+.sub {
+    display: flex;
+    flex-direction: row;
+    color: grey;
+    border-bottom: 1px solid grey;
+    margin-bottom: 5px;
+}
+
+.el{
+    padding-right: 10px;
+}
+
+#article_content{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#input_form{
+    margin-bottom: 3%;
+}
+
+textarea{
+    resize: none;
+}

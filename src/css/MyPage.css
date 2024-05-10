@@ -1,0 +1,16 @@
+#user_info_wrapper{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.info_container{
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    margin-top: 10px;
+}
+
+#info_title{
+    text-align: center;
+}
