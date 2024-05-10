@@ -6,8 +6,11 @@ import "../css/Page.css";
 const Page = ({pageInfo}) => {
   const PAGE_SIZE = 5
   const maxPageNum = Math.ceil(pageInfo.maxPage / PAGE_SIZE);
-  const pageNum = pageInfo.endPage / PAGE_SIZE
+  const pageNum = Math.ceil(pageInfo.endPage / PAGE_SIZE);
   const path = pageInfo.path
+  console.log(pageInfo)
+  console.log(pageNum)
+  console.log(maxPageNum)
   let back = ""
   let next = ""
   let cur = 1
