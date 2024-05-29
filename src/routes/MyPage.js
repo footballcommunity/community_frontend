@@ -1,6 +1,8 @@
 /* BoardList.js */
 import React, {useEffect, useState} from 'react';
+import { useNavigate } from "react-router-dom";
 import getUserInfo from '../api/getUserInfo';
+import Cookies from 'js-cookie';
 import "../css/MyPage.css"
 
 const MyPage = () => {
@@ -10,6 +12,14 @@ const MyPage = () => {
   const [status, setStatus] = useState();
   const [role, setRole] = useState();
   
+  const navigate = useNavigate();
+
+  const logout = () => {
+    Cookies.remove('accessToken');
+    Cookies.remove('refreshToken');
+    window.location.reload();
+  }
+
   const fetchUserInfo = async () => {
     try {
       const res = await getUserInfo();
@@ -20,7 +30,10 @@ const MyPage = () => {
       setStatus(res.setStatus)
       setRole(res.setRole)
     } catch (error) {
-      console.log(error) 
+      console.log(error)
+      if(error.response.data.errorCode === "4105"){
+        navigate("/signin");
+      } 
     }
   }
   useEffect(()=>{
@@ -47,6 +60,9 @@ const MyPage = () => {
         <div className='info_container'>
           <div className='info_key'>생성날짜</div>
           <div className='info_value'>{dateCreated}</div>
+        </div>
+        <div className='info_container'>
+          <button onClick={logout}>로그아웃</button>
         </div>
     </div>
   );
