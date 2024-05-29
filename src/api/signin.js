@@ -24,9 +24,10 @@ const signin = async ({email, pw}) => {
         // 쿠키 저장 
         Cookies.set('accessToken', accessToken, { expires:7})
         Cookies.set('refreshToken', refreshToken, { expires:7})
-        // 홈으로 이동 
+        return true;
     } catch (error) {
         console.log(error)
+        return false;
     }
   }
 

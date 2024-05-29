@@ -1,13 +1,13 @@
 /* Header.js */
-import React from 'react';
+import React,{useState} from 'react';
 import {Link} from "react-router-dom";
 import '../css/Header.css'
 import Cookies from 'js-cookie';
 
 const Header = () => {
-  const accessToken = Cookies.get("accessToken");
+  const [accessToken, setAccessToken] = useState(Cookies.get("accessToken"));
+  let isLoggedIn;
   console.log({accessToken})
-  let isLoggedIn = undefined;
   let navList = []
   if(accessToken === undefined){
     isLoggedIn = false;

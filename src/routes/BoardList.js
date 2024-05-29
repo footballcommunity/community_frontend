@@ -31,7 +31,7 @@ const BoardList = () => {
       setEndPage(response.page.endPage);
     } catch (error) {
       console.log(error)
-    }
+      }
   }
   useEffect(()=>{
     fetchBoardList();

@@ -14,7 +14,7 @@ const MenuBar = () => {
             navigate(`${path}?keyword=${keyword}&searchType=${selected}`)
         }
         else{
-            navigate(`${path}/search?keyword=${keyword}&searchType=${selected}`)
+                                                        navigate(`${path}/search?keyword=${keyword}&searchType=${selected}`)
         }
         window.location.reload();
     }

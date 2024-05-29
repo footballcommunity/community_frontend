@@ -58,7 +58,7 @@ const ArticleDetails = () => {
             <button id="comment_btn">확인</button>
           </div>
           {commentList.map(
-            (comment) => <Comment key={`comment_${comment.commentId}`} comment={comment}></Comment>
+            (comment) => <Comment key={`comment_${comment.commentId}`} comment={comment} commentId={comment.commentId} articleId={articleId}></Comment>
           )}
         </div>
     </div>

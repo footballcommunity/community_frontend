@@ -1,7 +1,8 @@
 /* BoardList.js */
-import React from 'react';
+import React,{useState} from 'react';
 
 const Home = () => {
+
   return (
     <div>
         홈 화면
