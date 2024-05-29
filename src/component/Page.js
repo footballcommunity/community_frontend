@@ -5,11 +5,6 @@ import "../css/Page.css";
 
 const Page = ({pageInfo}) => {
   const PAGE_SIZE = 5
-  let maxPage = pageInfo.maxPage
-  if(maxPage === 0){
-    maxPage = 1
-  }
-  console.log(pageInfo.endPage)
   const maxPageNum = Math.ceil(pageInfo.maxPage / PAGE_SIZE);
   const pageNum = Math.ceil(pageInfo.endPage / PAGE_SIZE);
   const path = pageInfo.path
@@ -30,17 +25,18 @@ const Page = ({pageInfo}) => {
   else{
     defaultPath += `?${params.toString()}&`
   }
-  if(pageNum === 1 || pageNum === 0){
+  if(pageNum === 1){
     back = `${defaultPath}page=1`
   } else{
     back = `${defaultPath}page=${(pageNum-1)*PAGE_SIZE}`
   }
 
   if(pageNum === maxPageNum){
-    next = `${defaultPath}page=${maxPage}`
+    next = `${defaultPath}page=${pageInfo.maxPage}`
   } else{
     next = `${defaultPath}page=${(pageNum)*PAGE_SIZE+1}`
   }
+  
   let step;
   let pages = []
   for (step = pageInfo.startPage; step <= pageInfo.endPage; step++) {

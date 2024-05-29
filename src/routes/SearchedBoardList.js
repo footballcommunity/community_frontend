@@ -7,7 +7,7 @@ import Page from '../component/Page';
 import getBoardList from '../api/getBoardList';
 import { useLocation } from 'react-router-dom';
 
-const BoardList = () => {
+const SearchedBoardList = (props) => {
   const location = useLocation().search;
   const path = useLocation().pathname;
   console.log(location)
@@ -19,10 +19,8 @@ const BoardList = () => {
   const [page, setPage] = useState();
 
   const fetchBoardList = async () => {
-    console.log("path : "+path)
-    console.log("location : " + location)
     try {
-      const response = await getBoardList(path,location);
+      const response = await getBoardList(location);
       console.log(response)
       setBoard(response.pageList);
       setPage(response.page.page);
@@ -45,9 +43,9 @@ const BoardList = () => {
             <Article key={article.articleId} articleId={article.articleId} title={article.title} authorName={article.authorName} categoryName={article.categoryName} viewCount={article.viewCount} dateCreated={article.dateCreated} dateUpdated={article.dateUpdated}></Article>
           ))
         }
-    <Page pageInfo={{path, location, page, maxPage, startPage, endPage}}></Page>
+    <Page pageInfo={{path, page, maxPage, startPage, endPage}}></Page>
     </div>
   );
 };
 
-export default BoardList;
+export default SearchedBoardList;

@@ -18,7 +18,7 @@ async function getUserInfo(){
     const response = await axios.request(config);
     return response.data
   } catch (error) {
-    throw error
+    console.log(error)
   }
 }
     

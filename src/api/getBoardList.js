@@ -14,7 +14,7 @@ async function getBoardList(path,params){
     console.log(response.data)
     return response.data;
   } catch (error) {
-    throw error
+    console.log(error)
   }
 }
     
