@@ -10,7 +10,7 @@ import { useLocation } from 'react-router-dom';
 const BoardList = () => {
   const location = useLocation().search;
   const path = useLocation().pathname;
-  console.log(location)
+  console.log(location,path)
   const [board, setBoard] = useState([]);
   const [maxPage, setMaxPage] = useState();
   const [startPage, setStartPage] = useState();
@@ -35,7 +35,7 @@ const BoardList = () => {
   }
   useEffect(()=>{
     fetchBoardList();
-  }, [location]);
+  }, [location, path]);
   
   return (
     <div className="list">
