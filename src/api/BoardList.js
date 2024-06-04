@@ -6,8 +6,8 @@ import '../css/BoardList.css'
 import Page from '../component/Page';
 import getBoardList from '../api/getBoardList';
 import { useLocation } from 'react-router-dom';
-import getCategoryBoardList
- from './getCategoryBoardList';
+import getCategoryBoardList from './getCategoryBoardList';
+
 const BoardList = () => {
   const [board, setBoard] = useState([]);
   const [currentPage, setCurrentPage] = useState();

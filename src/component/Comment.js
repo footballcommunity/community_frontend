@@ -9,6 +9,12 @@ const Comment = (props) => {
   const parentId = props.commentId;
   const [visible, setVisible] = useState(false);
   const [comment, setComment] = useState("");
+
+  const dateFormat = (date) => {
+    let format = (date||"").split("T")
+    return format[0] + " " + (format[1]||"").split(".")[0]
+  }
+
   const saveComment = event => {
     setComment(event.target.value);
   }
@@ -19,13 +25,14 @@ const Comment = (props) => {
       "content" : comment
     });
     setVisible(false);
+    window.location.reload();
   }
   return (
     <div id="wrapper">
       <div className='parent'>
         <div id="comment_info">
           <div>{props.comment.username}</div>
-          <div>{props.comment.dateCreated}</div>
+          <div>{dateFormat(props.comment.dateCreated)}</div>
           <div onClick={() => setVisible(!visible)}>댓글</div>
         </div>
         <div>
@@ -42,7 +49,7 @@ const Comment = (props) => {
                 <div>
                   <div id="comment_info">
                     <div>{child.username}</div>
-                    <div>{child.dateCreated}</div>
+                    <div>{dateFormat(child.dateCreated)}</div>
                   </div>
                   <div>
                     {child.content}

@@ -4,7 +4,7 @@ import React from 'react';
 const Home = () => {
   return (
     <div>
-        홈 화면
+      <h1> 축구/풋살 용병 게시판 </h1>
     </div>
   );
 };

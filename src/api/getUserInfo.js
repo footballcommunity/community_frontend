@@ -1,10 +1,11 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import Cookies from 'js-cookie';
+import errorHandler from "../utils/errorHandler";
 
 
 async function getUserInfo(){
   const token = Cookies.get("accessToken")
-  console.log("token : " + token)
+  let response;
   
   let config = {
     method: 'get',
@@ -15,10 +16,11 @@ async function getUserInfo(){
     }
   };
   try {
-    const response = await axios.request(config);
-    return response.data
+    response = await axios.request(config);
+    console.log(response.status);
+    return {"status": response.status, "data": response.data};
   } catch (error) {
-    throw error;
+    return errorHandler(error);
   }
 }
     

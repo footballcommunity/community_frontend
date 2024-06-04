@@ -2,11 +2,14 @@ import React, {useEffect, useState} from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 import '../css/Signin.css'
+import Loading from '../component/Loading';
 import signin from '../api/signin';
 
 const Signin = () => {
     const [email, setEmail] = useState('');
     const [pw, setPw] = useState('');
+    const [loading, setLoading] = useState(true);
+
     const navigate = useNavigate();
     const saveEmail = event => {
       setEmail(event.target.value);
@@ -15,8 +18,10 @@ const Signin = () => {
       setPw(event.target.value);
     };
     const handleSignin = async () => {
+      setLoading(true)
       let isSuccess = false;
       isSuccess = await signin({email, pw});
+      setLoading(false);
       if(isSuccess){
         window.location.reload();
       } else {
@@ -30,10 +35,12 @@ const Signin = () => {
       if(accessToken !== undefined){
         navigate("/board");
       }
+      setLoading(false);
     }, []);
-
+    
   return (
 <div className="section">
+    {loading ? <Loading /> : null}
     <h4 className="mb-4 pb-3">Log In</h4>
     <input type="email" name="logemail" className="form-style" placeholder="Your Email" id="logemail" autoComplete="off" onChange={saveEmail}></input>
     <input type="password" name="logpass" className="form-style" placeholder="Your Password" id="logpass" autoComplete="off" onChange={savePw}></input>
