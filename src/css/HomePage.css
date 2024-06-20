@@ -1,0 +1,9 @@
+#dateContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+.matchItem{
+    border: 1px solid grey;
+    
+}
