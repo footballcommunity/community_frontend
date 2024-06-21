@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import postComment from '../api/postComment';
+import postComment from '../api/comment';
 import "../css/Comment.css";
 
 

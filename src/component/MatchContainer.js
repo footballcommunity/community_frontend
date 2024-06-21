@@ -7,8 +7,8 @@ const MatchItem = ({match}) => {
       <div id={match.id} className='matchItem'>
         <div id="left">
           <div id="topInfo">
-            <div class="time">{dateToKSTString(match.time)}</div>
-            <div class="match_title">{match.title}</div>
+            <div className="time">{dateToKSTString(match.time)}</div>
+            <div className="match_title">{match.title}</div>
           </div>
           <div id="bottomInfo">
             <div>{toSexString(match.sex)}</div>
