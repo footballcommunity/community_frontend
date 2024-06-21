@@ -25,7 +25,7 @@ function reducer(state, action) {
     }
 }
 
-function useAsync(callback, deps = []) {
+function useAsync(callback, deps = [], params = {}) {
     const [state, dispatch] = useReducer(reducer, {
       loading: false,
       data: null,
@@ -35,7 +35,7 @@ function useAsync(callback, deps = []) {
     const fetchData = async () => {
       dispatch({ type: 'LOADING' });
       try {
-        const data = await callback(deps);
+        const data = await callback(params);
         dispatch({ type: 'SUCCESS', data });
       } catch (e) {
         dispatch({ type: 'ERROR', error: e });

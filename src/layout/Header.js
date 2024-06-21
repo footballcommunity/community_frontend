@@ -16,9 +16,9 @@ const Header = () => {
   }
 
   if(isLoggedIn){
-    navList = [{"to":"/","name":"용병 게시판"},{"to":"/board?page=1","name":"게시판"},{"to":"/mypage","name":"마이페이지"}]
+    navList = [{"to":"/","name":"용병 게시판"},{"to":"/board","name":"게시판"},{"to":"/mypage","name":"마이페이지"}]
   } else{
-    navList = [{"to":"/","name":"용병 게시판"},{"to":"/board?page=1","name":"게시판"},{"to":"/signin","name":"로그인"}]
+    navList = [{"to":"/","name":"용병 게시판"},{"to":"/board","name":"게시판"},{"to":"/signin","name":"로그인"}]
   }
   return (
     <header className='head'>

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import '../css/MenuBar.css'
 
-const MenuBar = () => {
+const MenuBar = ({setSelectedCategory}) => {
     const navigate = useNavigate();
     const path = useLocation().pathname;
     const [selected, setSelected] = useState("TITLE");
@@ -26,11 +26,15 @@ const MenuBar = () => {
     const handleInput = (e) => {
         setKeyword(e.target.value)
       };
+
+    const onClickHandler = (e) => {
+        setSelectedCategory(parseInt(e.target.getAttribute("category")))
+    }
     return (
         <div className="menubar">
-            <Link className="menulink" to="/board?page=1">전체 게시판</Link>
-            <Link className="menulink" to="/board/1?page=1">축구 게시판</Link>
-            <Link className="menulink"to="/board/2?page=1">농구 게시판</Link>
+            <div className="menulink" onClick={onClickHandler} category="-1">전체 게시판</div>
+            <div className="menulink" onClick={onClickHandler} category="1">축구 게시판</div>
+            <div className="menulink" onClick={onClickHandler} category="2">농구 게시판</div>
             <input className="search" onChange={handleInput}></input>
             <select onChange={handleSelect} value={selected}>
                 <option value="TITLE">제목</option>

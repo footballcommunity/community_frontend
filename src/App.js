@@ -1,6 +1,6 @@
 import './App.css';
 import {Route, Routes} from "react-router-dom";
-import BoardList from "./pages/BoardList";
+import BoardPage from "./pages/BoardPage";
 import HomePage from "./pages/HomePage.js";
 import Signin from './pages/Signin';
 import ArticleDetails from './pages/ArticleDetails';
@@ -11,10 +11,7 @@ function App() {
     <Routes>
       <Route path="/" element={<HomePage/>}/>
       <Route path="/mypage" element={<MyPage/>}/>
-      <Route path="/board" element={<BoardList/>}/>
-      <Route path="/board/:boardId" element={<BoardList/>}/>
-      <Route path="/board/search" element={<BoardList/>}/>
-      <Route path="/board/:boardId/search" element={<BoardList/>}/>
+      <Route path="/board" element={<BoardPage/>}/>
       <Route path="/signin" element={<Signin/>}/>
       <Route path='/article/:articleId' element={<ArticleDetails/>}/>
     </Routes>

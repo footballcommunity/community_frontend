@@ -12,9 +12,9 @@ import { dateToString } from '../utils/dateUtils.js';
 const HomePage = () => {
   const [selectedDate, setSelectedDate] = useState(dateToString(new Date()))
   const [selectedPage, setSelectedPage] = useState(1)
-  const [state, refetch] = useAsync(getMatchList,[selectedDate, selectedPage]);
+  const [state, refetch] = useAsync(getMatchList,[selectedDate, selectedPage],{selectedDate, selectedPage});
   const {loading, data, error} = state;
-  console.log(selectedPage, selectedDate)
+  console.log(state)
   if (loading) return <Loading></Loading>;
   if (error) return <Error></Error>
   if (!data) return null;
