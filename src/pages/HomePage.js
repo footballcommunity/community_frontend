@@ -14,10 +14,12 @@ const HomePage = () => {
   const [selectedPage, setSelectedPage] = useState(1)
   const [state, refetch] = useAsync(getMatchList,[selectedDate, selectedPage],{selectedDate, selectedPage});
   const {loading, data, error} = state;
-  console.log(state)
+  useEffect(() => {
+    setSelectedPage(1)
+  }, [selectedDate])
   if (loading) return <Loading></Loading>;
-  if (error) return <Error></Error>
-  if (!data) return null;
+  if (error | !data) return <Error></Error>
+
   const pageData = data.page
   const matchData = data.matchList
   
