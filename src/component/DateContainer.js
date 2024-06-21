@@ -1,5 +1,5 @@
 import useDateList from '../hooks/useDateList.js';
-import { dateToString } from '../utils/dateUtils.js';
+import { dateToString, getDateList } from '../utils/dateUtils.js';
 
 import "../css/Date.css"
 
@@ -10,22 +10,27 @@ const DateItem = ({iscurrent, onClickHandler,date}) => {
         </div>)
 }
 
-const DateContainer = ({selectedDate, setSelectedDate}) => {
-    const dateList = useDateList();
-
+const DateContainer = ({selectedDateDay, setSelectedDate}) => {
+    const dateList = getDateList();
+    
     const handleClick = ({date}) => {
         const currentDate = new Date();
-        console.log("date ",date)
-        currentDate.setDate(date)
+        if(currentDate.getDate() === date){
+            console.log(currentDate)
+        } else {
+            currentDate.setDate(date)
+            currentDate.setHours(0)
+            currentDate.setMinutes(0)
+            currentDate.setSeconds(0)
+        }
         setSelectedDate(dateToString(currentDate))
     }
-    console.log(selectedDate)
-
+    console.log(selectedDateDay)
     return(
     <div id='dateContainer'>
         {dateList.map((date) => {
             var isCurrent
-            (date.toString() === selectedDate ? isCurrent = "true" : isCurrent = "false")
+            (date === (selectedDateDay) ? isCurrent = "true" : isCurrent = "false")
             return <DateItem key={date} iscurrent={isCurrent} onClickHandler={handleClick} date={date}></DateItem>
         }
         )}

@@ -5,7 +5,7 @@ import '../css/Signin.css'
 import Loading from '../component/Loading';
 import signin from '../api/signin';
 
-const Signin = () => {
+const SigninPage = () => {
     const [email, setEmail] = useState('');
     const [pw, setPw] = useState('');
     const [loading, setLoading] = useState(true);
@@ -50,4 +50,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default SigninPage;
