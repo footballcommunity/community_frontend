@@ -6,12 +6,17 @@ import { getMatchList } from '../api/match.js';
 import "../css/HomePage.css"
 import MatchContianer from '../component/MatchContainer.js';
 import Page from '../component/Page.js';
+import Loading from '../component/Loading.js';
+import { Error } from '../component/Error.js';
+import { dateToString } from '../utils/dateUtils.js';
 const HomePage = () => {
-  const [state, refetch] = useAsync(getMatchList,[]);
+  const [selectedDate, setSelectedDate] = useState(dateToString(new Date()))
+  const [selectedPage, setSelectedPage] = useState(1)
+  const [state, refetch] = useAsync(getMatchList,[selectedDate, selectedPage]);
   const {loading, data, error} = state;
-
-  if (loading) return <div>로딩중..</div>;
-  if (error) return <div>에러가 발생했습니다</div>;
+  console.log(selectedPage, selectedDate)
+  if (loading) return <Loading></Loading>;
+  if (error) return <Error></Error>
   if (!data) return null;
   const pageData = data.page
   const matchData = data.matchList
@@ -19,9 +24,9 @@ const HomePage = () => {
   return (
     <div>
       <h1> 축구/풋살 용병 게시판 </h1>
-      <DateContainer></DateContainer>
+      <DateContainer selectedDate={selectedDate.substr(8,2)} setSelectedDate={setSelectedDate}></DateContainer>
       <MatchContianer matchList={matchData}></MatchContianer>
-      <Page pageInfo={pageData}></Page>
+      <Page setSelectedPage={setSelectedPage} pageInfo={pageData}></Page>
     </div>
   );
 };

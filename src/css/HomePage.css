@@ -4,6 +4,27 @@
 }
 
 .matchItem{
-    border: 1px solid grey;
-    
+    display: flex;
+    flex-direction: row;
+    padding: 10px, 0;
+    margin-bottom: 10px;
+}
+
+#left{
+    margin-right: auto;
+}
+
+#right{
+    margin-left: auto;
+}
+#topInfo{
+    display: flex;
+}
+
+.time{
+    padding-right: 10px;
+}
+
+.match_title{
+    padding-right: 10px;
 }

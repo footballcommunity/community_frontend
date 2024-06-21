@@ -18,8 +18,8 @@
     color: white;
 }
 
-#current{
-    background-color: slategray;
+.page_el[iscurrent=true]{
+    color: slategray;
 }
 
 #input_form{
