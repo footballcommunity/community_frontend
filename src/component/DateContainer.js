@@ -18,6 +18,10 @@ const DateContainer = ({selectedDateDay, setSelectedDate}) => {
         if(currentDate.getDate() === date){
             console.log(currentDate)
         } else {
+
+            if(currentDate.getDate() > date){
+                currentDate.setMonth(currentDate.getMonth() + 1)
+            }
             currentDate.setDate(date)
             currentDate.setHours(0)
             currentDate.setMinutes(0)
