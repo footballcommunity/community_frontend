@@ -1,31 +1,38 @@
-#dateContainer{
-    display: flex;
-    flex-direction: row;
+#dateContainer {
+  display: flex;
+  flex-direction: row;
 }
 
-.matchItem{
-    display: flex;
-    flex-direction: row;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid grey;
+.matchItem {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid grey;
 }
 
-#left{
-    margin-right: auto;
+a:link,
+:visited,
+:active {
+  color: white;
+  text-decoration: none;
 }
 
-#right{
-    margin-left: auto;
-}
-#topInfo{
-    display: flex;
+#left {
+  margin-right: auto;
 }
 
-.time{
-    padding-right: 10px;
+#right {
+  margin-left: auto;
+}
+#topInfo {
+  display: flex;
 }
 
-.match_title{
-    padding-right: 10px;
+.time {
+  padding-right: 10px;
+}
+
+.match_title {
+  padding-right: 10px;
 }
