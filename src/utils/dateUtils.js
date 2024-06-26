@@ -114,6 +114,8 @@ const getDateList = () => {
   return list;
 };
 
+// DateItem 전용 
+// DB UTC String을 KST로 변환 후 DateItem 형식으로 변환
 const dateToKSTString = (date) => {
   var inDate = new Date(date);
   inDate.setHours(inDate.getHours() + 9);

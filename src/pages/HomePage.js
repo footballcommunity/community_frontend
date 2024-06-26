@@ -7,22 +7,22 @@ import "../css/HomePage.css";
 import MatchContianer from "../component/MatchContainer.js";
 import Page from "../component/Page.js";
 import Loading from "../component/Loading.js";
-import { Error } from "../component/Error.js";
+import Error from "../component/Error.js";
 import { getCurrentKSTDateString } from "../utils/dateUtils.js";
 const HomePage = () => {
   const [selectedDate, setSelectedDate] = useState(getCurrentKSTDateString); // 선택한 날짜 -> Date 객체
   const [selectedPage, setSelectedPage] = useState(1);
-  const [state, refetch] = useAsync(
-    getMatchList,
-    [selectedDate, selectedPage],
-    { selectedDate, selectedPage }
-  );
+  const [state, run] = useAsync(getMatchList);
   const { loading, data, error } = state;
   useEffect(() => {
     setSelectedPage(1);
   }, [selectedDate]);
+  useEffect(() => {
+    run({ selectedDate, selectedPage });
+  }, [selectedDate, selectedPage]);
   if (loading) return <Loading></Loading>;
-  if (error | !data) return <Error></Error>;
+  if (error) return <Error error={error} refetch={run}></Error>;
+  if (!data) return null;
   const pageData = data.page;
   const matchData = data.matchList;
 
