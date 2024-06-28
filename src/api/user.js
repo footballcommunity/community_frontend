@@ -51,4 +51,24 @@ async function signin({ email, pw }) {
   const response = await axios.request(config);
   return response.data;
 }
-export { getUserInfo, reissueToken, signin };
+
+async function signup({ email, username, pw }) {
+  let config = {
+    method: "post",
+    url: "http://52.78.129.190:8080/members/signup",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: JSON.stringify({
+      role: "MEMBER",
+      email: email,
+      username: username,
+      password: pw,
+      status: "ACTIVE",
+    }),
+  };
+
+  const response = await axios.request(config);
+  return response.data;
+}
+export { getUserInfo, reissueToken, signin, signup };

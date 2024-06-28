@@ -1,21 +1,24 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import "../css/Signin.css";
 import Loading from "../component/Loading";
-import { signin } from "../api/user.js";
-import useAsync from "../hooks/useAsync.js";
+import { signup } from "../api/user.js";
 import { UserContext } from "../UserContext.js";
 
-const SigninPage = () => {
+const SignupPage = () => {
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
   const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [pw, setPw] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const saveEmail = (event) => {
     setEmail(event.target.value);
+  };
+  const saveUsername = (event) => {
+    setUsername(event.target.value);
   };
   const savePw = (event) => {
     setPw(event.target.value);
@@ -24,12 +27,10 @@ const SigninPage = () => {
   const handleSignin = async (e) => {
     try {
       setLoading(true);
-      const data = await signin({ email, pw });
-      Cookies.set("accessToken", data.accessToken);
-      Cookies.set("refreshToken", data.refreshToken);
-      setIsLoggedIn(true);
+      const data = await signup({ email, username, pw });
       setLoading(false);
-      navigate("/board");
+      alert("회원가입 되었습니다");
+      navigate("/signin");
     } catch (e) {
       if (e.response) {
         alert(e.response.data.message);
@@ -53,6 +54,15 @@ const SigninPage = () => {
         onChange={saveEmail}
       ></input>
       <input
+        type="username"
+        name="username"
+        className="form-style"
+        placeholder="Username"
+        id="logemail"
+        autoComplete="off"
+        onChange={saveUsername}
+      ></input>
+      <input
         type="password"
         name="logpass"
         className="form-style"
@@ -64,11 +74,8 @@ const SigninPage = () => {
       <button className="btn" onClick={handleSignin}>
         submit
       </button>
-      <p className="mb-0 mt-4 text-center">
-        <Link to={"/signup"}>회원가입</Link>
-      </p>
     </div>
   );
 };
 
-export default SigninPage;
+export default SignupPage;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import useAsync from "../hooks/useAsync.js";
 import { useParams } from "react-router-dom";
 import getArticleDetails from "../api/getArticleDetails";
@@ -9,22 +9,33 @@ import updateViewCount from "../api/updateViewCount";
 import Loading from "../component/Loading.js";
 import Error from "../component/Error.js";
 import Cookies from "js-cookie";
+import { UserContext } from "../UserContext.js";
 
 const BoardDetailPage = () => {
   const articleId = useParams().articleId;
+  const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
+
   const [newComment, setNewComment] = useState("");
-  const [state, refetch] = useAsync(getArticleDetails, [articleId], {
-    articleId,
-  });
+  const [state, run] = useAsync(getArticleDetails);
+
   const { loading, data, error } = state;
 
   const addViewCount = async () => {
     let hasViewed = Cookies.get(`communisty_service_${articleId}`);
     if (hasViewed === undefined) {
-      updateViewCount(Number(articleId));
-      Cookies.set(`communisty_service_${articleId}`, true);
+      try {
+        updateViewCount(Number(articleId));
+        Cookies.set(`communisty_service_${articleId}`, true);
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
+
+  useEffect(() => {
+    run({ articleId });
+    addViewCount();
+  }, []);
 
   const dateFormat = (date) => {
     let format = (date || "").split("T");
@@ -36,6 +47,10 @@ const BoardDetailPage = () => {
   };
 
   const postNewComment = async (e) => {
+    if (!isLoggedIn) {
+      alert("로그인을 해주세요");
+      return;
+    }
     const comment = newComment;
     const parentId = null;
     const params = {
@@ -46,13 +61,15 @@ const BoardDetailPage = () => {
 
     try {
       await postComment(params);
-    } catch {
-      window.alert("실패 했습니다");
+      window.location.reload();
+    } catch (e) {
+      console.log(e);
+      window.alert(e.response.data.message);
     }
   };
 
   if (loading) return <Loading></Loading>;
-  if (error) return <Error error={error} refetch={refetch}></Error>;
+  if (error) return <Error error={error} refetch={run}></Error>;
   if (!data) return null;
 
   const boardInfo = data.articleInfo;
@@ -81,7 +98,7 @@ const BoardDetailPage = () => {
           ></textarea>
           <button
             id="comment_btn"
-            articleId={articleId}
+            articleid={articleId}
             onClick={postNewComment}
           >
             확인
@@ -89,7 +106,7 @@ const BoardDetailPage = () => {
         </div>
         {commentList.map((comment) => (
           <Comment
-            key={`comment_${comment.commentId}`}
+            key={comment.commentId}
             comment={comment}
             commentId={comment.commentId}
             articleId={articleId}

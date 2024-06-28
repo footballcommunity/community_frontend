@@ -5,15 +5,14 @@ import Cookies from "js-cookie";
 
 const Error = (error, refetch) => {
   console.log(error);
-  const errorCode = error.errorCode;
-  const errorMessage = error.errorMessage;
-  const timeStamp = error.timeStamp;
+  const errorCode = error.error.errorCode;
+  const errorMessage = error.error.message;
+  const timeStamp = error.error.timeStamp;
   const navigate = useNavigate();
-
   switch (errorCode) {
     // 서버 오류
     // AccessToken 만료
-    case "4105":
+    case 4105:
       // 토큰 재발급
       reissueToken()
         .then((data) => {
@@ -29,6 +28,11 @@ const Error = (error, refetch) => {
             Cookies.remove("refreshToken");
           }
         });
+      break;
+    case 5000:
+      console.log(errorCode);
+      console.log(errorMessage);
+      return <div>{errorMessage}</div>;
 
     default:
       return <div>{errorMessage}</div>;

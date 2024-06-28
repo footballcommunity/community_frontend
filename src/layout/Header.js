@@ -3,10 +3,15 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "../css/Header.css";
 import { UserContext } from "../UserContext.js";
+import Cookies from "js-cookie";
 
 const Header = () => {
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
-
+  if (Cookies.get("accessToken") === undefined) {
+    setIsLoggedIn(false);
+  } else {
+    setIsLoggedIn(true);
+  }
   let navList = [];
   if (isLoggedIn) {
     navList = [

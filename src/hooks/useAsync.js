@@ -41,7 +41,11 @@ function useAsync(callback) {
       return data;
     } catch (e) {
       console.log(e);
-      await dispatch({ type: "ERROR", error: e.response.data });
+      if (e.response) {
+        dispatch({ type: "ERROR", error: e.response.data });
+      } else {
+        dispatch({ type: "ERROR", error: e });
+      }
     }
   };
 
