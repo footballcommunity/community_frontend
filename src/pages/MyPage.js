@@ -47,7 +47,6 @@ const MyPage = () => {
       <div className="info_container">
         <div className="info_key">이름</div>
         <div className="info_value">{data.username}</div>
-        <input></input>
         <button className="info_value">변경</button>
       </div>
       <div className="info_container">

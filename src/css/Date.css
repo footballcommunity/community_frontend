@@ -1,12 +1,16 @@
 .item {
-    border-radius: 38px;
-    padding: 10px 0;
-    margin-right: 10px;
-    width: 50px;
-    text-align: center;
-    margin-bottom: 10px;
+  border-radius: 38px;
+  padding: 10px 0;
+  margin-right: 10px;
+  width: 50px;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
-.item[iscurrent=true]{
-    background-color: #1570ff;
+.item[iscurrent="true"] {
+  background-color: #1570ff;
+}
+
+#dateContainer {
+  margin-top: 10px;
 }

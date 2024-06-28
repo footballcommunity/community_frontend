@@ -51,19 +51,8 @@ const getSecondFromDateString = (dateString) => {
 
 const getAPIDateStringFromDateString = (dateString) => {
   //yyyy. mm. dd. N요일 hh:mm:ss -> yyyy-MM-dd HH:mm:ss
-  // 오늘 날짜와 동일하다면 시간 까지 보낸다
-  // 오늘 날짜가 아닌 다른 날짜라면 00:00:00 으로 변경 해서 보낸다
-  var newDateString = "";
-  if (
-    getDateFromDateString(getCurrentKSTDateString()) ===
-    getDateFromDateString(dateString)
-  ) {
-    newDateString = dateString;
-  } else {
-    newDateString = dateString.substr(0, 18) + "00:00:00";
-  }
-  //UTC 기준으로 변경
-  newDateString = getUTCDateStringFromKSTDateString(newDateString);
+  // UTC로 변형해야 함
+  var newDateString = getUTCDateStringFromKSTDateString(dateString);
 
   return (
     getYearFromDateString(newDateString) +
@@ -114,7 +103,7 @@ const getDateList = () => {
   return list;
 };
 
-// DateItem 전용 
+// DateItem 전용
 // DB UTC String을 KST로 변환 후 DateItem 형식으로 변환
 const dateToKSTString = (date) => {
   var inDate = new Date(date);
@@ -124,7 +113,26 @@ const dateToKSTString = (date) => {
   return (h < 10 ? "0" : "") + h + ":" + (m < 10 ? "0" : "") + m;
 };
 
+const getTimeList = () => {
+  let time_list = [];
+  for (let i = 0; i <= 24; i++) {
+    if (i <= 9) {
+      time_list.push("0" + i.toString() + ":00");
+    } else {
+      time_list.push(i.toString() + ":00");
+    }
+  }
+  return time_list;
+};
+
+const hourToTimeString = (h) => {
+  return h + ":00";
+};
+
 export {
+  hourToTimeString,
+  getHourFromDateString,
+  getTimeList,
   getCurrentKSTDateString,
   dateToKSTString,
   getDateList,

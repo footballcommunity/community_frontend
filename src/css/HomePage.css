@@ -36,3 +36,17 @@ a:link,
 .match_title {
   padding-right: 10px;
 }
+
+.filtercls {
+  border-radius: 10px;
+  padding: 5px 5px;
+  margin: 0px 3px;
+}
+
+label {
+  border: 1px solid white;
+}
+
+#match_container {
+  margin-top: 20px;
+}

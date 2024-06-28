@@ -1,7 +1,8 @@
 import React from "react";
 import { dateToKSTString } from "../utils/dateUtils";
 import { toSexString } from "../utils/matchUtils";
-
+import Loading from "../component/Loading.js";
+import Error from "../component/Error.js";
 const MatchItem = ({ match }) => {
   return (
     <a id={match.id} className="matchItem" href={match.link}>
@@ -19,11 +20,14 @@ const MatchItem = ({ match }) => {
   );
 };
 
-const MatchContianer = ({ matchList }) => {
-  console.log(matchList);
+const MatchContianer = ({ loading, error, data }) => {
+  if (error) return <Error error={error}></Error>;
+  if (loading) return <Loading></Loading>;
+  if (!data) return null;
+
   return (
-    <div>
-      {matchList.map((match) => (
+    <div id="match_container">
+      {data.matchList.map((match) => (
         <MatchItem key={match.id} match={match}></MatchItem>
       ))}
     </div>
