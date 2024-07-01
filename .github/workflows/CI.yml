@@ -36,11 +36,14 @@ jobs:
       # 2. 기존의 컨테이너를 중지
       - name: docker stop container
         run: sudo docker stop community_service_frontend 2>/dev/null || true
-
+  
       # 3. 최신 이미지를 실행시킵니다
       - name: docker run new container
-        run: sudo docker run --name community_service_frontend --rm -d -p 80:3000 ${{ secrets.DOCKERHUB_USERNAME }}/community_service_frontend
+        run: sudo docker run --name community_service_frontend --rm -d -p 3000:3000 ${{ secrets.DOCKERHUB_USERNAME }}/community_service_frontend
 
-      # 4. 미사용 이미지를 정리
+      # 4. https 인증서 복사
+      - name : ssl cert 
+        run : sudo docker cp /etc/letsencrypt community_service_frontend:/etc/letsencrypt
+      # 5. 미사용 이미지를 정리
       - name: delete old docker image
         run: sudo docker system prune -f
