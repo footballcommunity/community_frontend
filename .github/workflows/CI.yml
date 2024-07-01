@@ -43,7 +43,7 @@ jobs:
 
       # 4. https 인증서 복사
       - name : ssl cert 
-        run : sudo docker cp /etc/letsencrypt /etc/letsencrypt
+        run : sudo docker cp /etc/letsencrypt community_service_frontend:/etc/letsencrypt
       # 5. 미사용 이미지를 정리
       - name: delete old docker image
         run: sudo docker system prune -f
