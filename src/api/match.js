@@ -1,6 +1,5 @@
 import axios, { AxiosError } from "axios";
-import { getAPIDateStringFromDateString } from "../utils/dateUtils";
-
+import BASE_URL from "../config";
 const getMatchList = async ({
   startDateTime,
   endDateTime,
@@ -8,10 +7,10 @@ const getMatchList = async ({
   matchStatus,
 }) => {
   const response = await axios.get(
-    `http://52.78.129.190:8080/match?startTime=${startDateTime}&endTime=${endDateTime}&sex=${sex}&matchStatus=${matchStatus}`
+    `${BASE_URL}/match?startTime=${startDateTime}&endTime=${endDateTime}&sex=${sex}&matchStatus=${matchStatus}`
   );
   console.log(
-    `http://52.78.129.190:8080/match?startTime=${startDateTime}&endTime=${endDateTime}&sex=${sex}&matchStatus=${matchStatus}`
+    `${BASE_URL}/match?startTime=${startDateTime}&endTime=${endDateTime}&sex=${sex}&matchStatus=${matchStatus}`
   );
   console.log(response);
   return response.data;

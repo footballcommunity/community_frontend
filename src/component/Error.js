@@ -22,6 +22,7 @@ const Error = (error, refetch) => {
           console.log(data);
           Cookies.set("accessToken", data.accessToken);
           Cookies.set("refreshToken", data.refreshToken);
+          setIsLoggedIn(true);
           window.location.reload();
         })
         .catch((e) => {

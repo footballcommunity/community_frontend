@@ -1,12 +1,13 @@
 import axios, { AxiosError } from "axios";
 import Cookies from "js-cookie";
+import BASE_URL from "../config";
 
 async function getUserInfo() {
   const token = Cookies.get("accessToken");
 
   let config = {
     method: "get",
-    url: "http://52.78.129.190:8080/members/info",
+    url: `${BASE_URL}/members/info`,
     headers: {
       Authorization: token,
     },
@@ -23,7 +24,7 @@ async function reissueToken() {
 
   let config = {
     method: "post",
-    url: "http://52.78.129.190:8080/members/refresh",
+    url: `${BASE_URL}/members/refresh`,
     headers: {
       "Content-Type": "application/json",
     },
@@ -41,7 +42,7 @@ async function reissueToken() {
 async function signin({ email, pw }) {
   let config = {
     method: "post",
-    url: "http://52.78.129.190:8080/members/signin",
+    url: `${BASE_URL}/members/signin`,
     headers: {
       "Content-Type": "application/json",
     },
@@ -58,7 +59,7 @@ async function signin({ email, pw }) {
 async function signup({ email, username, pw }) {
   let config = {
     method: "post",
-    url: "http://52.78.129.190:8080/members/signup",
+    url: `${BASE_URL}/members/signup`,
     headers: {
       "Content-Type": "application/json",
     },

@@ -24,7 +24,7 @@ const Header = () => {
   }
   return (
     <header className="head">
-      <nav>
+      <nav>``
         <div></div>
         <div className="linkContainer">
           {navList.map((e) => {
