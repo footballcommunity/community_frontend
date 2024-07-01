@@ -7,11 +7,7 @@ import Cookies from "js-cookie";
 
 const Header = () => {
   const { isLoggedIn, setIsLoggedIn } = useContext(UserContext);
-  if (Cookies.get("accessToken") === undefined) {
-    setIsLoggedIn(false);
-  } else {
-    setIsLoggedIn(true);
-  }
+
   let navList = [];
   if (isLoggedIn) {
     navList = [

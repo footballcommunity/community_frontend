@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import "../css/MenuBar.css";
 
-const MenuBar = ({ setSelectedType, setKeyword, setSelectedCategory }) => {
+const MenuBar = ({
+  setSelectedType,
+  setKeyword,
+  setSelectedCategory,
+  setSelectedPage,
+}) => {
   const [selected, setSelected] = useState("TITLE");
   const [key, setKey] = useState("");
 
   const handleSearch = async () => {
     setSelectedType(selected);
     setKeyword(key);
+    setSelectedPage(1);
   };
 
   const handleSelect = (e) => {

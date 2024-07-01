@@ -3,8 +3,6 @@ import React, { useEffect, useState } from "react";
 import BoardContainer from "../component/BoardContainer";
 import MenuBar from "../component/MenuBar.js";
 import useAsync from "../hooks/useAsync.js";
-import Loading from "../component/Loading.js";
-import Error from "../component/Error.js";
 import "../css/BoardPage.css";
 import Page from "../component/Page";
 import { getBoardList } from "../api/board.js";
@@ -23,7 +21,6 @@ const BoardPage = () => {
   useEffect(() => {
     run({ selectedPage, selectedCategory, selectedType, keyword });
   }, [selectedPage, selectedCategory, selectedType, keyword]);
-  const { loading, data, error } = state;
 
   const handlePost = () => {
     if (!isLoggedIn) {
@@ -33,19 +30,29 @@ const BoardPage = () => {
       navigate("/post");
     }
   };
-  if (loading) return <Loading></Loading>;
-  if (state.error) return <Error error={error} refetch={run}></Error>;
-  if (!data) return null;
+
   return (
     <div className="list">
       <MenuBar
         setSelectedType={setSelectedType}
         setKeyword={setKeyword}
         setSelectedCategory={setSelectedCategory}
+        setSelectedPage={setSelectedPage}
       ></MenuBar>
-      <BoardContainer boardList={data.pageList}></BoardContainer>
-      <button id="post_btn" onClick={handlePost}>글쓰기</button>
-      <Page setSelectedPage={setSelectedPage} pageInfo={data.page}></Page>
+      <BoardContainer
+        loading={state.loading}
+        error={state.error}
+        data={state.data}
+      ></BoardContainer>
+      <button id="post_btn" onClick={handlePost}>
+        글쓰기
+      </button>
+      <Page
+        setSelectedPage={setSelectedPage}
+        loading={state.loading}
+        error={state.error}
+        data={state.data}
+      ></Page>
     </div>
   );
 };

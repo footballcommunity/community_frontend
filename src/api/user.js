@@ -22,12 +22,15 @@ async function reissueToken() {
   const refreshToken = Cookies.get("refreshToken");
 
   let config = {
-    method: "get",
+    method: "post",
     url: "http://52.78.129.190:8080/members/refresh",
-    data: {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: JSON.stringify({
       accessToken: accessToken,
       refreshToken: refreshToken,
-    },
+    }),
   };
 
   const response = await axios.request(config);

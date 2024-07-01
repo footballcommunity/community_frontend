@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Loading from "../component/Loading.js";
+import Error from "../component/Error.js";
 
 const BoardItem = ({
   articleId,
@@ -27,8 +29,12 @@ const BoardItem = ({
   );
 };
 
-const BoardContainer = ({ boardList }) => {
-  return boardList.map((board) => {
+const BoardContainer = ({ loading, error, data }) => {
+  if (loading) return <Loading></Loading>;
+  if (error) return <Error error={error}></Error>;
+  if (!data) return null;
+  
+  return data.pageList.map((board) => {
     return (
       <BoardItem
         key={board.articleId}

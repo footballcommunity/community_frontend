@@ -3,6 +3,20 @@ import { dateToKSTString } from "../utils/dateUtils";
 import { toSexString } from "../utils/matchUtils";
 import Loading from "../component/Loading.js";
 import Error from "../component/Error.js";
+
+const toStatusString = (status) => {
+  switch (status) {
+    case "AVAILABLE":
+      return "신청가능";
+    case "HURRY":
+      return "마감임박";
+    case "FULL":
+      return "마감";
+    default:
+      return "알수없음";
+  }
+};
+
 const MatchItem = ({ match }) => {
   return (
     <a id={match.id} className="matchItem" href={match.link}>
@@ -15,7 +29,7 @@ const MatchItem = ({ match }) => {
           <div>{toSexString(match.sex)}</div>
         </div>
       </div>
-      <div id="right">{match.status}</div>
+      <div id="right">{toStatusString(match.status)}</div>
     </a>
   );
 };

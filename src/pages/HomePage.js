@@ -6,6 +6,7 @@ import { getMatchList } from "../api/match.js";
 import "../css/HomePage.css";
 import MatchContianer from "../component/MatchContainer.js";
 import Page from "../component/Page.js";
+import { useNavigate } from "react-router-dom";
 
 import {
   hourToTimeString,
@@ -18,6 +19,7 @@ import {
 } from "../utils/dateUtils.js";
 
 const HomePage = () => {
+  const navigate = useNavigate();
   const currentDateString = getCurrentKSTDateString();
   const [startDate, setStartDate] = useState(
     getDateFromDateString(currentDateString)
@@ -79,6 +81,7 @@ const HomePage = () => {
     <div>
       <h1> 풋살 용병 게시판 </h1>
       <label className="filtercls">시작</label>
+
       <select id="start_date" className="filtercls" onChange={handleStartDate}>
         {dateList.map((date) => {
           return (

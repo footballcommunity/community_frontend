@@ -108,9 +108,24 @@ const getDateList = () => {
 const dateToKSTString = (date) => {
   var inDate = new Date(date);
   inDate.setHours(inDate.getHours() + 9);
+  const month = inDate.getMonth() + 1;
+  const d = inDate.getDate();
+  const day = inDate.getDay();
   const h = inDate.getHours();
   const m = inDate.getMinutes();
-  return (h < 10 ? "0" : "") + h + ":" + (m < 10 ? "0" : "") + m;
+  return (
+    (month < 10 ? "0" : "") +
+    month +
+    "." +
+    d +
+    " " +
+    " " +
+    (h < 10 ? "0" : "") +
+    h +
+    ":" +
+    (m < 10 ? "0" : "") +
+    m
+  );
 };
 
 const getTimeList = () => {

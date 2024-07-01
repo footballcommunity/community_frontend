@@ -1,26 +1,26 @@
 .menubar {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center; 
-    border: 1px solid gray;
-
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid gray;
 }
 
 .menulink {
-    display: inline-block;
-    text-align: center;
-    color: white;
-    height: 100%;
-    padding-left: 10px;
-    padding-right: 10px;
-    border: 1px solid gray;
+  display: inline-block;
+  text-align: center;
+  color: white;
+  height: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: 1px solid gray;
 }
 
 .menulink:visited {
-    columns: white;
+  columns: white;
 }
 
-.search{
-    margin-left: auto;
+.search {
+  margin-left: auto;
+  width: 500px;
 }

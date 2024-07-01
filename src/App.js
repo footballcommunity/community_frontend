@@ -7,7 +7,7 @@ import SignupPage from "./pages/SignupPage.js";
 import BoardDetailPage from "./pages/BoardDetailPage";
 import MyPage from "./pages/MyPage";
 import PostPage from "./pages/PostPage.js";
-
+import MatchPostPage from "./pages/MatchPostPage.js";
 function App() {
   return (
     <Routes>
@@ -17,6 +17,7 @@ function App() {
       <Route path="/signin" element={<SigninPage />} />
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/post" element={<PostPage />} />
+      <Route path="/match/post" element={<MatchPostPage />} />
       <Route path="/article/:articleId" element={<BoardDetailPage />} />
     </Routes>
   );
