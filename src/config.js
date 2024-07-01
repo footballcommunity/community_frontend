@@ -1,3 +1,3 @@
-const BASE_URL = "https://52.78.129.190:8080";
+const BASE_URL = "https://api.futsalmoa.shop";
 
 export default BASE_URL;
